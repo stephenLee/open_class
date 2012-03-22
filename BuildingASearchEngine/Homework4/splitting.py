@@ -12,10 +12,19 @@
 #print out => ['After', 'the', 'flood', 'all', 'the', 'colors', 'came', 'out']
 
 def split_string(source, splitlist):
-    out = source
-    for sep in splitlist:
-        out = out.split(sep)
-    return out
+    output = []
+    atsplit = True  # At a split point
+    for char in source:
+        if char in splitlist:
+            atsplit = True
+        else:
+            if atsplit:
+                output.append(char)
+                atsplit = False
+            else:
+                # add character to last word
+                output[-1] = output[-1] + char
+    return output
 
 if __name__ == "__main__":
     out = split_string("This is a test-of the,string separation-code!", " ,!-")

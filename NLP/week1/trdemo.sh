@@ -23,3 +23,4 @@ echo shoooo5555hhhiHHH | tr --squeeze-repeates [:alnum:]
 
 echo foo | tr --complement o x
 
+tr 'A-Z' 'a-z' < shakes.txt | tr -sc 'A-Za-z' '\n' < shakes.txt | sort | uniq -c | sort -n -rf | less

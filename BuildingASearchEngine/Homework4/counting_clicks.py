@@ -43,12 +43,11 @@
 #print lookup(index, 'good') => [['http://www.udacity.com/cs101x/index.html', 0], ['http://www.udacity.com/cs101x/crawling.html', 1]]
 
 def record_user_click(index,keyword,url):
-    for entry in index:
-        if entry[0] == keyword:
-            for urlist in entry[1]:
-                if urlist[0] == url:
-                    urlist[1] += 1
-                    return 
+    urls = lookup(index, keyword)
+    if urls:
+        for entry in urls:
+            if entry[0] == url:
+                entry[1] = entry[1] + 1
 
 def add_to_index(index, keyword, url):
     for entry in index:
@@ -56,7 +55,7 @@ def add_to_index(index, keyword, url):
             entry[1].append([url, 0])
             return
     # not found, add new keyword to index
-    index.append([keyword, [url, 0]])
+    index.append([keyword, [[url, 0]]])
 
 
 def get_page(url):
