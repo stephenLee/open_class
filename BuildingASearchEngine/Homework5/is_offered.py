@@ -69,10 +69,8 @@ def courses_offered(courses, hexamester):
 #For example, is_offered(courses, 'cs101', 'dec2011') can produce an error.)
 
 def is_offered(courses, course, hexameter):
-    for c in courses[hexameter]:
-        if course in c:
-            return True
-    return False
+    return course in courses[hexameter]
+
 
 #Define a procedure, when_offered(courses, course), that takes as a courses data
 #structure and a string representing a class, and returns a list of strings
@@ -82,11 +80,11 @@ def is_offered(courses, course, hexameter):
 #print when_offered(courses, 'bio893') => []
 
 def when_offered(courses,course):
-    time = []
-    for hexameter, c in courses.iteritems():
-        if course in c:
-            time.append(hexameter)
-    return time
+    offered = []
+    for hexameter in courses:
+        if course in courses[hexameter]:
+            offered.append(hexameter)
+    return offered
 
 #[Double Gold Star] Define a procedure, involved(courses, person), that takes as
 #input a courses structure and a person and returns a Dictionary that describes
